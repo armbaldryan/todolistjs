@@ -1,16 +1,16 @@
 /***Defining Variables***/
-var newTaskValue = document.getElementById("new-task");
-var addBtn = document.getElementsByTagName("button")[0];
-var inCompleteTasks = document.getElementById("incomplete-tasks");
-var completedTasks = document.getElementById("completed-tasks");
+const newTaskValue = document.getElementById("new-task");
+const addBtn = document.getElementsByTagName("button")[0];
+const inCompleteTasks = document.getElementById("incomplete-tasks");
+const completedTasks = document.getElementById("completed-tasks");
 
-var todo = function(value){
-  var listSample = document.createElement("li");
-  var inpcheck = document.createElement("input");
-  var label = document.createElement("label");
-  var editInput = document.createElement("input"); 
-  var editButton = document.createElement("button");
-  var deleteButton = document.createElement("button");
+let todo = (value) => {
+  let listSample = document.createElement("li");
+  let inpcheck = document.createElement("input");
+  let label = document.createElement("label");
+  let editInput = document.createElement("input"); 
+  let editButton = document.createElement("button");
+  let deleteButton = document.createElement("button");
   inpcheck.type = "checkbox";
   editInput.type = "text";
   editButton.innerText = "Edit";
@@ -29,12 +29,12 @@ var todo = function(value){
   return listSample;
 }
 
-var addnewTask = function(){
+let addnewTask = () => {
    if(newTaskValue.value == 0){
     alert("write smth");
     return;
   }
-  var listSample = todo(newTaskValue.value);
+  let listSample = todo(newTaskValue.value);
   inCompleteTasks.appendChild(listSample);
   newTaskValue.value = "";
   func(listSample,taskCompleted);
@@ -42,16 +42,16 @@ var addnewTask = function(){
 
 addBtn.onclick = addnewTask;
 
-var deleteTask = function(){
-  var listSample = this.parentNode;
-  var listSampleParent = listSample.parentNode;
+let deleteTask = function(){
+  let listSample = this.parentNode;
+  let listSampleParent = listSample.parentNode;
   listSampleParent.removeChild(listSample);
 }
-var editTask = function(){
-  var listSample = this.parentNode;
+let editTask = function(){
+  let listSample = this.parentNode;
   listSample.classList.toggle('editMode');
-  var label = listSample.querySelector("label");
-  var input = listSample.querySelector("input[type=text]");
+  let label = listSample.querySelector("label");
+  let input = listSample.querySelector("input[type=text]");
    if(input.value == 0){
   alert("write smth");
   return;
@@ -64,22 +64,22 @@ var editTask = function(){
   }
 
 }
-var func = function(taskItem,ckecklist){
-  var deleteItem = taskItem.querySelector("button.delete");
+let func = function(taskItem,ckecklist){
+  let deleteItem = taskItem.querySelector("button.delete");
   deleteItem.onclick = deleteTask;
-  var ckeckList = taskItem.querySelector("input[type=checkbox]");
+  let ckeckList = taskItem.querySelector("input[type=checkbox]");
   ckeckList.onchange = ckecklist;
-  var editButton = taskItem.querySelector("button.edit");
+  let editButton = taskItem.querySelector("button.edit");
   editButton.onclick = editTask;
 }
 
-var taskCompleted = function(){
-  var listSample = this.parentNode;
+let taskCompleted = function(){
+  let listSample = this.parentNode;
   completedTasks.appendChild(listSample);
   func(listSample,taskInCompleted);
 };
-var taskInCompleted = function(){
-  var listSample = this.parentNode;
+let taskInCompleted = function(){
+  let listSample = this.parentNode;
   inCompleteTasks.appendChild(listSample);
   func(listSample,taskCompleted);
 };
